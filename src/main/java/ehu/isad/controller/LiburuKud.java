@@ -35,15 +35,15 @@ public class LiburuKud {
   @FXML
   private Button btAtzera;
 
+  @FXML
+  void onClick(ActionEvent event) {
+    liburuakApp.xehetasunakErakutsi();
+  }
 
   public void setMainApp(Liburuak liburuak) {
-    this.liburuakApp = liburuakApp;
+    this.liburuakApp = liburuak;
   }
 
-  @FXML
-  public void onClic(ActionEvent event) throws IOException {
-    this.liburuakApp.xehetasunakErakutsi();
-  }
 
   public void setLblIzen(String pIzenburu) {
     this.labelIzenburu.setText(pIzenburu);
