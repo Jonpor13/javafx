@@ -40,7 +40,7 @@ public class XehetasunakKud implements Initializable {
   public void onClick(ActionEvent actionEvent) throws IOException {
     Book book = (Book)cbLiburu.getValue();
     Book liburua= Sarea.readFromUrl(book.getIsbn());
-    liburuakApp.liburuakErakutsi(liburua.getDetails().getTitle(),liburua.getDetails().getPublishers(),liburua.getDetails().getNumber_of_pages());
+    liburuakApp.liburuakErakutsi(liburua.getDetails().getTitle(),liburua.getDetails().getPublishers(),liburua.getDetails().getNumber_of_pages(), Sarea.createImage(liburua.getThumbnail_url()));
 
     }
 
@@ -52,11 +52,6 @@ public class XehetasunakKud implements Initializable {
 
     cbLiburu.setItems( liburuak );
 
-    /*cbLiburu.getItems().addAll(
-            new Book("1491910399", "R for Data Science"),
-            new Book("1491946008", "Fluent Python"),
-            new Book("9781491906187", "Data Algorithms")
-    );*/
     this.converter();
 
   }

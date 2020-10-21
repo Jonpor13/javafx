@@ -1,5 +1,8 @@
 package ehu.isad;
 
+import javafx.scene.effect.ImageInput;
+import javafx.scene.image.ImageView;
+
 import java.util.Arrays;
 
 public class Details {
@@ -11,11 +14,14 @@ public class Details {
     @Override
     public String toString() {
         return "Details{" +
-                "publishers=" + Arrays.toString(publishers) +
+                "title='" + title + '\'' +
+                ", publishers=" + Arrays.toString(publishers) +
                 ", number_of_pages=" + number_of_pages +
-                ", title='" + title + '\'' +
+
                 '}';
     }
+
+
 
     public String getTitle() {
         return title;

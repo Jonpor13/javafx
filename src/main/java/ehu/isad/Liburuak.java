@@ -2,10 +2,14 @@ package ehu.isad;
 
 import ehu.isad.controller.ui.XehetasunakKud;
 import ehu.isad.controller.ui.LiburuKud;
+import ehu.isad.utils.Sarea;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.effect.ImageInput;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -54,10 +58,11 @@ public class Liburuak extends Application {
     launch(args);
   }
 
-  public void liburuakErakutsi(String title, String publishers, Integer number_of_pages) {
+  public void liburuakErakutsi(String title, String publishers, Integer number_of_pages, Image image) {
     liburuKud.setLblIzen(title);
     liburuKud.setLblArgitaletxe(publishers);
     liburuKud.setLblOrriKop(number_of_pages.toString());
+    liburuKud.setImagen(image);
     stage.setScene(sceneLiburu);
     stage.show();
   }

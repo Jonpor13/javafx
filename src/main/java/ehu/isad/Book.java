@@ -42,4 +42,6 @@ public class Book {
     public String getTitle() {
         return title;
     }
+
+    public String getThumbnail_url(){return thumbnail_url;}
 }
