@@ -7,6 +7,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 
@@ -28,25 +29,38 @@ public class KautotuKud implements Initializable {
     @FXML
     private TextField txtPasahitza;
 
+    @FXML
+    private Button btSartu;
+
+    @FXML
+    private Button btEzabatu;
+
+
     public void setMainApp(Main main) {
         this.mainApp = main;
     }
 
+
     @FXML
-    public void onClick(ActionEvent actionEvent) {
-        System.out.println(txtErabiltzaile.getText() + ":" + txtPasahitza.getText());
-        System.out.println(comboZerbitzua.getValue());
+    void onEzabatu(ActionEvent event) {
+        ZerbitzuKud.getInstance().ezbatuZerbitzua(comboZerbitzua.getValue().toString());
+        this.iniziatuV2();
 
-        if ("Flickr".equals(comboZerbitzua.getValue()) &&
-                "juanan".equals(txtErabiltzaile.getText()) &&
-                "pereira".equals(txtPasahitza.getText())) {
+    }
 
-            mainApp.mainErakutsi();
-        }
+    @FXML
+    void onSartu(ActionEvent event) {
+        ZerbitzuKud.getInstance().sartuZerbitzua(comboZerbitzua.getEditor().getText());
+        this.iniziatuV2();
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        this.iniziatuV2();
+
+    }
+
+    private void iniziatuV2(){
         List<String> herrialdeakList = ZerbitzuKud.getInstance().lortuZerbitzuak();
         ObservableList<String> herrialdeak = FXCollections.observableArrayList(herrialdeakList);
 
