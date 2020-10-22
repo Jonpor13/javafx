@@ -11,10 +11,10 @@
       <Label layoutX="108.0" layoutY="84.0" text="Argitaletxea:" />
       <Label layoutX="107.0" layoutY="127.0" text="Orri Kop.:" />
       <Label layoutX="107.0" layoutY="172.0" text="Irudia:" />
-      <ImageView fx:id="Irudia" fitHeight="120.0" fitWidth="111.0" layoutX="161.0" layoutY="172.0" pickOnBounds="true" preserveRatio="true" />
-      <Label fx:id="labelIzenburu" layoutX="281.0" layoutY="45.0" />
-      <Label fx:id="labelArgitaletxe" layoutX="281.0" layoutY="84.0" />
-      <Label fx:id="labelOrriKop" layoutX="281.0" layoutY="127.0" />
-      <Button fx:id="btAtzera" layoutX="255.0" layoutY="280.0" mnemonicParsing="false" onAction="#onClick" text="Atzera" />
+      <ImageView fx:id="Irudia" fitHeight="120.0" fitWidth="111.0" layoutX="174.0" layoutY="172.0" pickOnBounds="true" preserveRatio="true" />
+      <Label fx:id="labelIzenburu" layoutX="181.0" layoutY="44.0" prefHeight="18.0" prefWidth="399.0" />
+      <Label fx:id="labelArgitaletxe" layoutX="187.0" layoutY="83.0" prefHeight="18.0" prefWidth="316.0" />
+      <Label fx:id="labelOrriKop" layoutX="171.0" layoutY="126.0" prefHeight="18.0" prefWidth="205.0" />
+      <Button fx:id="btAtzera" layoutX="503.0" layoutY="360.0" mnemonicParsing="false" onAction="#onClick" text="Atzera" />
    </children>
 </AnchorPane>

@@ -17,6 +17,7 @@ import javafx.util.StringConverter;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -37,10 +38,23 @@ public class XehetasunakKud implements Initializable {
   }
 
   @FXML
-  public void onClick(ActionEvent actionEvent) throws IOException {
+  public void onClick(ActionEvent actionEvent) throws IOException, SQLException {
     Book book = (Book)cbLiburu.getValue();
-    Book liburua= Sarea.readFromUrl(book.getIsbn());
-    liburuakApp.liburuakErakutsi(liburua.getDetails().getTitle(),liburua.getDetails().getPublishers(),liburua.getDetails().getNumber_of_pages(), Sarea.createImage(liburua.getThumbnail_url()));
+    Integer orriKop = ZerbitzuKud.getInstance().orriKop(book.getIsbn());
+
+    if (orriKop == 0){  //Hau da, orri kopurua 0 bada (liburu guztiak orri kopuru minimo bat dute) hori esan gura du oraindik ez dela liburu hori datu basean kargatu
+
+      Book liburua= Sarea.readFromUrl(book.getIsbn());
+      liburuakApp.liburuakErakutsi(liburua.getDetails().getTitle(),liburua.getDetails().getPublishers(),liburua.getDetails().getNumber_of_pages(), Sarea.createImage(liburua.getThumbnail_url()));
+      ZerbitzuKud.getInstance().liburuaGorde(book.getIsbn(),liburua.getDetails().getPublishers(),liburua.getDetails().getNumber_of_pages(),Sarea.createImage(liburua.getThumbnail_url()));
+    }
+
+    else {  //Hau da, liburuaren orri kopurua ez bada 0, liburu hori datu basean kargatuta dago jadanik
+
+
+
+    }
+
 
     }
 
