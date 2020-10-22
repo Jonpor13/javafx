@@ -72,26 +72,65 @@ public class ZerbitzuKud {
         //this.argazkiaGorde(isbn, image);
 
     }
+            private void argitaletxeGorde(String isbn, String publishers){
 
-    private void argitaletxeGorde(String isbn, String publishers){
+                String query = "update liburua set argitaletxe=\""+publishers+"\" where isbn='"+isbn+"';";
+                DBKudeatzaile dbKudeatzaile = DBKudeatzaile.getInstantzia();
+                dbKudeatzaile.execSQL(query);
 
-        String query = "update liburua set argitaletxe=\""+publishers+"\" where isbn='"+isbn+"';";
+            }
+
+            private void orriKopGorde(String isbn, Integer number_of_pages){
+
+                String query = "update liburua set orriKop="+number_of_pages+" where isbn='"+isbn+"';";
+                DBKudeatzaile dbKudeatzaile = DBKudeatzaile.getInstantzia();
+                dbKudeatzaile.execSQL(query);
+            }
+
+            /*private void argazkiaGorde(String isbn, Image image){
+
+
+            }*/
+
+    public String argitaletxeIrakurri(String isbn){
+
+        String query = "select argitaletxe from liburua where isbn='"+isbn+"';";
         DBKudeatzaile dbKudeatzaile = DBKudeatzaile.getInstantzia();
-        dbKudeatzaile.execSQL(query);
+        ResultSet rs = dbKudeatzaile.execSQL(query);
+        String argitaletxe = null;
 
+        try {
+            if (rs.next()) {
+
+                argitaletxe = rs.getString("argitaletxe");
+
+            }
+        } catch(SQLException throwables){
+            throwables.printStackTrace();
+        }
+
+        return argitaletxe;
     }
 
-    private void orriKopGorde(String isbn, Integer number_of_pages){
+    public Integer orriKopIrakurri(String isbn){
 
-        String query = "update liburua set orriKop="+number_of_pages+" where isbn='"+isbn+"';";
+        String query = "select orriKop from liburua where isbn='"+isbn+"';";
         DBKudeatzaile dbKudeatzaile = DBKudeatzaile.getInstantzia();
-        dbKudeatzaile.execSQL(query);
+        ResultSet rs = dbKudeatzaile.execSQL(query);
+        Integer orriKop = null;
+
+        try {
+            if (rs.next()) {
+
+                orriKop = rs.getInt("orriKop");
+
+            }
+        } catch(SQLException throwables){
+            throwables.printStackTrace();
+        }
+
+        return orriKop;
     }
-
-    /*private void argazkiaGorde(String isbn, Image image){
-
-
-    }*/
 
 
 }

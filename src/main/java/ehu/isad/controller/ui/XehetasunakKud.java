@@ -51,10 +51,11 @@ public class XehetasunakKud implements Initializable {
 
     else {  //Hau da, liburuaren orri kopurua ez bada 0, liburu hori datu basean kargatuta dago jadanik
 
-
+      String argitaletxe = ZerbitzuKud.getInstance().argitaletxeIrakurri(book.getIsbn());
+      Integer orriKopuru = ZerbitzuKud.getInstance().orriKopIrakurri(book.getIsbn());
+      liburuakApp.liburuakErakutsi(book.getTitle(),argitaletxe,orriKopuru, null);
 
     }
-
 
     }
 
