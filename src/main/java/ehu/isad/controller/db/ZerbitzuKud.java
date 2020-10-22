@@ -34,35 +34,12 @@ public class ZerbitzuKud {
                 Book liburua = new Book (isbn, izenburu);
                 System.out.println(isbn + ":" + izenburu);
                 emaitza.add(liburua);
-
             }
         } catch(SQLException throwables){
             throwables.printStackTrace();
         }
 
         return emaitza;
-    }
-
-    public Integer orriKop(String isbn) throws SQLException {
-
-        String query = "select orriKop from liburua where isbn like '"+isbn+"';";
-        DBKudeatzaile dbKudeatzaile = DBKudeatzaile.getInstantzia();
-        ResultSet rs = dbKudeatzaile.execSQL(query);
-        Integer orriKopu = null;
-
-        try {
-
-            if (rs.next()){
-                orriKopu = rs.getInt("orriKop");
-
-            }
-
-        }
-        catch(SQLException throwables){
-            throwables.printStackTrace();
-        }
-
-        return orriKopu;
     }
 
     public void liburuaGorde(String isbn, String publishers, Integer number_of_pages, Image image){
@@ -103,34 +80,35 @@ public class ZerbitzuKud {
             if (rs.next()) {
 
                 argitaletxe = rs.getString("argitaletxe");
-
             }
-        } catch(SQLException throwables){
+        }
+        catch(SQLException throwables){
             throwables.printStackTrace();
         }
 
         return argitaletxe;
     }
+    public Integer orriKopIrakurri(String isbn) throws SQLException {
 
-    public Integer orriKopIrakurri(String isbn){
-
-        String query = "select orriKop from liburua where isbn='"+isbn+"';";
+        String query = "select orriKop from liburua where isbn like '"+isbn+"';";
         DBKudeatzaile dbKudeatzaile = DBKudeatzaile.getInstantzia();
         ResultSet rs = dbKudeatzaile.execSQL(query);
-        Integer orriKop = null;
+        Integer orriKopu = null;
 
         try {
-            if (rs.next()) {
+            if (rs.next()){
 
-                orriKop = rs.getInt("orriKop");
-
+                orriKopu = rs.getInt("orriKop");
             }
-        } catch(SQLException throwables){
+        }
+        catch(SQLException throwables){
             throwables.printStackTrace();
         }
 
-        return orriKop;
+        return orriKopu;
     }
+
+
 
 
 }

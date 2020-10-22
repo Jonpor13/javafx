@@ -40,7 +40,7 @@ public class XehetasunakKud implements Initializable {
   @FXML
   public void onClick(ActionEvent actionEvent) throws IOException, SQLException {
     Book book = (Book)cbLiburu.getValue();
-    Integer orriKop = ZerbitzuKud.getInstance().orriKop(book.getIsbn());
+    Integer orriKop = ZerbitzuKud.getInstance().orriKopIrakurri(book.getIsbn());
 
     if (orriKop == 0){  //Hau da, orri kopurua 0 bada (liburu guztiak orri kopuru minimo bat dute) hori esan gura du oraindik ez dela liburu hori datu basean kargatu
 
