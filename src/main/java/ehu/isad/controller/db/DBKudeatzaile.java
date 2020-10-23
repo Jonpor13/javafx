@@ -20,6 +20,7 @@ public class DBKudeatzaile {
             conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/", properties);
             conn.setCatalog(properties.getProperty("dbname"));
 
+
         } catch (SQLException ex) {
             // handle any errors
             System.out.println("SQLException: " + ex.getMessage());

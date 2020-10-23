@@ -16,6 +16,7 @@ public class ZerbitzuKud {
         return instance;
     }
 
+
     private ZerbitzuKud() {
     }
 
@@ -42,11 +43,11 @@ public class ZerbitzuKud {
         return emaitza;
     }
 
-    public void liburuaGorde(String isbn, String publishers, Integer number_of_pages, Image image){
+    public void liburuaGorde(String isbn, String publishers, Integer number_of_pages, String path){
 
         this.argitaletxeGorde(isbn, publishers);
         this.orriKopGorde(isbn, number_of_pages);
-        //this.argazkiaGorde(isbn, image);
+        this.argazkiaGorde(isbn, path);
 
     }
             private void argitaletxeGorde(String isbn, String publishers){
@@ -64,10 +65,11 @@ public class ZerbitzuKud {
                 dbKudeatzaile.execSQL(query);
             }
 
-            /*private void argazkiaGorde(String isbn, Image image){
-
-
-            }*/
+            private void argazkiaGorde(String isbn, String path){
+                String query = "update liburua set irudia='"+path+"' where isbn='"+isbn+"';";
+                DBKudeatzaile dbKudeatzaile = DBKudeatzaile.getInstantzia();
+                dbKudeatzaile.execSQL(query);
+            }
 
     public String argitaletxeIrakurri(String isbn){
 
@@ -90,25 +92,41 @@ public class ZerbitzuKud {
     }
     public Integer orriKopIrakurri(String isbn) throws SQLException {
 
-        String query = "select orriKop from liburua where isbn like '"+isbn+"';";
+        String query = "select orriKop from liburua where isbn like '" + isbn + "';";
         DBKudeatzaile dbKudeatzaile = DBKudeatzaile.getInstantzia();
         ResultSet rs = dbKudeatzaile.execSQL(query);
         Integer orriKopu = null;
 
         try {
-            if (rs.next()){
+            if (rs.next()) {
 
                 orriKopu = rs.getInt("orriKop");
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
+        return orriKopu;
+    }
+    public String imagePathIrakurri(String isbn) throws SQLException {
+
+        String query = "select irudia from liburua where isbn like '"+isbn+"';";
+        DBKudeatzaile dbKudeatzaile = DBKudeatzaile.getInstantzia();
+        ResultSet rs = dbKudeatzaile.execSQL(query);
+        String path = "";
+
+        try {
+            if (rs.next()){
+
+                path = rs.getString("irudia");
             }
         }
         catch(SQLException throwables){
             throwables.printStackTrace();
         }
 
-        return orriKopu;
+        return path;
+
     }
-
-
-
 
 }

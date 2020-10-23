@@ -4,10 +4,7 @@ import com.google.gson.Gson;
 import ehu.isad.Book;
 import javafx.scene.image.Image;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.net.URL;
 import java.net.URLConnection;
 
@@ -31,12 +28,38 @@ public class Sarea {
     }
 
     public static Image createImage(String url) throws IOException {
-        url=url.replace("-S","-M");
+
+        url = url.replace("-S", "-M");
         URLConnection conn = new URL(url).openConnection();
         conn.setRequestProperty("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.121 Safari/537.36");
         try (InputStream stream = conn.getInputStream()) {
+
             return new Image(stream);
         }
     }
+    public static String imageDeskargatu(String url, String path) throws IOException {
+
+        url = url.replace("-S", "-M");
+        URL URL = new URL(url);
+        String fileName = URL.getFile();
+        String destName = path + fileName.substring(fileName.lastIndexOf("/"));
+
+        InputStream is = URL.openStream();
+        OutputStream os = new FileOutputStream(destName);
+
+        byte[] b = new byte[2048];
+        int length;
+
+        while ((length = is.read(b)) != -1) {
+            os.write(b, 0, length);
+        }
+
+        is.close();
+        os.close();
+
+        return destName;
+
+    }
+
 
 }
